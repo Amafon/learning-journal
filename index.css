@@ -1,6 +1,25 @@
+/* 1. CONFIGURATION DE BASE & VARIABLES */
 :root {
-  --container-max: 1500px;
+  --container-max: 2000px;
   --gutter: clamp(16px, 4vw, 32px);
+  /* Échelle fixe pour le corps de texte */
+  --font-body-mobile: 1rem; /* 16px */
+  --font-body-desktop: 1.125rem; /* 18px */
+
+  /* Typographie fluide UNIQUEMENT pour les titres */
+  /* Formule : clamp(Taille_Min, Valeur_Fluide, Taille_Max) */
+  --font-h1: clamp(2rem, 5vw, 3.5rem); /* 32px à 56px */
+  --font-h2: clamp(1.625rem, 3.5vw, 2.5rem); /* 26px à 40px */
+  --font-h3: clamp(1.375rem, 2.5vw, 1.75rem); /* 22px à 28px */
+
+  /* Hauteurs de ligne (Line-height) */
+  --lh-body: 1.5;
+  --lh-title: 1.2;
+}
+
+/* 2. APPLICATION DU CORPS DE TEXTE (Avec un seul breakpoint) */
+html {
+  font-size: 16px; /* Base pour le calcul des rem */
 }
 
 *,
@@ -13,7 +32,27 @@
 
 body {
   font-family: "Source Sans 3", sans-serif;
+  font-size: var(--font-body-mobile);
+  line-height: var(--lh-body);
   color: #333;
+}
+
+/* 3. APPLICATION DES TITRES (Zéro Media Query requis ici !) */
+h1 {
+  font-size: var(--font-h1);
+  line-height: var(--lh-title);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: var(--font-h2);
+  line-height: var(--lh-title);
+  margin-block: 0.7em;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  /* max-width: 65ch; Limite la largeur du texte à ~65 caractères pour la lisibilité */
 }
 
 .container {
@@ -24,7 +63,6 @@ body {
 }
 
 header {
-  /* background-color: orange; */
   padding-block: 1.5em;
 }
 
@@ -66,6 +104,10 @@ a {
   color: inherit;
 }
 
+.section-hero p {
+  max-width: 75ch;
+}
+
 /* Section Heroe */
 .section-hero {
   color: #fff;
@@ -78,15 +120,16 @@ a {
 
 /* Section Blogs */
 
-.blogs-inner {
+.blogs-inner,
+.blog-inner {
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2em;
 }
 
 .article {
-  max-width: 400px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -112,4 +155,69 @@ a {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.article-title {
+  /* max-width: 30ch; */
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Footer */
+.footer-inner {
+  color: #ececec;
+  background-color: #000;
+  text-align: center;
+}
+
+.copy {
+  color: #d7d7d7;
+}
+
+/* Section Articles */
+.articles-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section About */
+.about-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-inner img {
+  align-self: start;
+  margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  .section-hero {
+    height: 60vh;
+  }
+
+  .main-article-title {
+    font-size: 2.5em;
+  }
+
+  .hero-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .main-article-description {
+    /* width: 40%; */
+  }
+}
+
+/* Changement discret et net pour le texte sur grand écran */
+@media (min-width: 1024px) {
+  body {
+    font-size: var(--font-body-desktop);
+    line-height: 1.6; /* Plus d'espace sur grand écran */
+  }
 }
