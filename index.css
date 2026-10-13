@@ -157,10 +157,6 @@ a {
   flex-grow: 1;
 }
 
-.article-title {
-  /* max-width: 30ch; */
-}
-
 .text-center {
   text-align: center;
 }
@@ -207,10 +203,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: end;
-  }
-
-  .main-article-description {
-    /* width: 40%; */
   }
 }
 
